@@ -8,12 +8,12 @@ from datetime import datetime, timedelta
 from dateutil import tz
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
-with open("conf/configuration.yml", 'r') as ymlfile:
+
+with open("conf/credentials.yml", 'r') as ymlfile:
     cfg = yaml.load(ymlfile) 
-es=Elasticsearch(hosts= ['https://{username}:{password}@{endpoint}:{port}/'.format(username=cfg['username'],
-                                                                                  password=cfg['password'],
-                                                                                  endpoint=cfg['endpoint'],
-                                                                                  port=cfg['port'])], timeout=5000)
+es=Elasticsearch(hosts= ['https://{username}:{password}@{endpoint}/'.format(username=cfg['USERNAME'],
+                                                                                  password=cfg['PASSWORD'],
+                                                                                  endpoint=cfg['ENDPOINT'])], timeout=5000)
 
 
 def set_mapping(es, doc_type_name = "_doc", index_name = "paris-sorties"):
